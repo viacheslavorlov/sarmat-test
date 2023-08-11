@@ -1,0 +1,17 @@
+.Chips {
+    height: 40px;
+    min-width: 80px;
+    padding: 8px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--gray-color);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+}
+
+.selected {
+    background-color: var(--dark-gray);
+    color: var(--white-color);
+}
