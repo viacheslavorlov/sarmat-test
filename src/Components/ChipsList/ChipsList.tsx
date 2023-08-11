@@ -18,14 +18,15 @@ export const ChipsList = ({chipsItems, className}: ChipsListProps) => {
 
     const sliceVisible = Math.floor((elementWidth - 104) / 104); // рассчитано исходя из длины одного чипса
 
-    console.log(elementWidth, sliceVisible);
     const onChangeVisible = () => {
         setIsVisible(prevState => !prevState);
     };
+
     const setChips = () => {
         setVisibleChildren(chipsItems.slice(0, sliceVisible));
         setHiddenChildren(chipsItems.slice(sliceVisible));
     };
+
     useEffect(() => {
         setChips();
     }, [chipsItems, sliceVisible]);
@@ -36,7 +37,6 @@ export const ChipsList = ({chipsItems, className}: ChipsListProps) => {
             window.removeEventListener('resize',setChips);
         };
     }, [chipsItems, sliceVisible]);
-    
 
     return (
         <div className={cls.container}>
@@ -63,6 +63,5 @@ export const ChipsList = ({chipsItems, className}: ChipsListProps) => {
 				</div>
             }
         </div>
-    )
-        ;
+    );
 };
