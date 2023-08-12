@@ -9,7 +9,7 @@ export const fakeChips = [
     {name:'Чипс 8', value: 'Чипс 8'},
     {name:'Чипс 9', value: 'Чипс 9'},
     {name:'Чипс 10', value: 'Чипс 10'},
-    {name:'Чипс 11', value: 'Чипс 11'},
+    {name:'ещё длинный Чипс 11', value: 'один длинный Чипс 11'},
     {name:'Чипс 12', value: 'Чипс 12'},
     {name:'Чипс 13', value: 'Чипс 13'},
     {name:'Чипс 14', value: 'Чипс 14'},

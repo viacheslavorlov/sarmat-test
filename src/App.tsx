@@ -8,7 +8,20 @@ function App() {
 
     return (
         <div className={cls.App}>
+            <h1>Первый вариант</h1>
             <ChipsList chipsItems={fakeChips}/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <h1>Второй  вариант</h1>
             <ContextChips.Provider value={chipsContentValue}>
                 <ChipsListVar2 chipses={fakeChips}/>
             </ContextChips.Provider>

@@ -1,6 +1,6 @@
 import {classNames} from "../../helpers/classNames.ts";
 import cls from './ChipsListVar2.module.css';
-import {memo, useContext, useEffect, useLayoutEffect, useRef, useState} from 'react';
+import {memo, useContext, useLayoutEffect, useRef, useState} from 'react';
 import {ChipsType} from "../../types/ChipsType.ts";
 import {ChipsVar2} from "../ChipsVar2/ChipsVar2.tsx";
 import treeDots from "../../assets/three-horizontal-buttons-svgrepo-com.svg";
@@ -15,54 +15,40 @@ export const ChipsListVar2 = memo((props: ChipsListVar2Props) => {
     const {
         className, chipses
     } = props;
-    const {setListWidth, getListWidth, getChildrenWidth} = useContext(ContextChips)
+    const { setListWidth, getListWidth, getChildrenWidth } = useContext(ContextChips);
     const listWidth = getListWidth();
     const childrenWidth = getChildrenWidth();
-    console.log('listWidth, childrenWidth',listWidth, childrenWidth)
     const refList = useRef<HTMLDivElement>(null);
     const [firstInvisibleChips, setFirstInvisibleChips] = useState(chipses.length);
     const [visibleChildren, setVisibleChildren] = useState<ChipsType[]>([]);
     const [hiddenChildren, setHiddenChildren] = useState<ChipsType[]>([]);
     const [isVisible, setIsVisible] = useState(false);
 
-    const setChips = () => {
-        if (refList.current) {
-            setListWidth(refList.current.offsetWidth)
-            let contentWidth = 200
-            for (let i = 0; i < childrenWidth.length; i++) {
-                if (listWidth > contentWidth) {
-                    contentWidth += childrenWidth[i]
-                } else {
-                    setFirstInvisibleChips(i)
-                    break
+    useLayoutEffect(() => {
+        const setChips = () => {
+            if (refList.current) {
+                setListWidth(refList.current.offsetWidth);
+                let contentWidth = 200;
+                for (let i = 0; i < childrenWidth.length; i++) {
+                    if (listWidth > contentWidth + childrenWidth[i]) {
+                        contentWidth += (childrenWidth[i] + 8); //? высчитываем ширину контента (длина элемента + gap)
+                    } else {
+                        setFirstInvisibleChips(i);
+                        break;
+                    }
                 }
             }
-        }
-        setVisibleChildren(chipses.slice(0, firstInvisibleChips));
-        setHiddenChildren(chipses.slice(firstInvisibleChips));
-    };
+            setVisibleChildren(chipses.slice(0, firstInvisibleChips));
+            setHiddenChildren(chipses.slice(firstInvisibleChips));
+        };
 
-    const onChangeVisible = () => {
-        setIsVisible(prevState => !prevState);
-    };
+        setChips();
+        window.addEventListener('resize', setChips);
 
-    useLayoutEffect(() => {
-        setChips()
-        window.addEventListener('resize', setChips)
         return () => {
-            window.removeEventListener('resize', setChips)
-        }
-    }, [chipses, firstInvisibleChips, listWidth, childrenWidth]);
-
-
-    useEffect(() => {
-        setChips();
-    }, []);
-
-    useEffect(() => {
-        setChips();
-    }, [chipses, firstInvisibleChips, listWidth, childrenWidth, getChildrenWidth]);
-
+            window.removeEventListener('resize', setChips);
+        };
+    }, [chipses, firstInvisibleChips, listWidth, childrenWidth, setListWidth]);
 
     return (
         <div className={cls.container}>
@@ -74,11 +60,11 @@ export const ChipsListVar2 = memo((props: ChipsListVar2Props) => {
                     />
                 ))}
                 <button
-                    onClick={onChangeVisible}
+                    onClick={() => setIsVisible(prevState => !prevState)}
                     className={cls.PopupButton}
                     disabled={hiddenChildren.length === 0}
                 >
-                    <img src={treeDots} alt="button" className={cls.treeDots}/>
+                    <img src={treeDots} alt="button" className={cls.treeDots} />
                 </button>
             </div>
             {isVisible && (

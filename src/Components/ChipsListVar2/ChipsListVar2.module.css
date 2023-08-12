@@ -39,7 +39,7 @@
 .dropDown {
 	position: relative;
 	align-self: flex-end;
-	width: 60%;
+	width: 40%;
 }
 
 .dropDownInner {
@@ -53,4 +53,18 @@
 	border-radius: var(--border-radius);
 	box-shadow: 0 0 16px rgba(0, 0, 0, 0.4);
 	z-index: 100;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+@media (max-width: 640px) {
+	.dropDown {
+		width: 85%;
+	}
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+	.dropDown {
+		width: 60%;
+	}
 }
