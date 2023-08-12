@@ -7,6 +7,7 @@ function App() {
     return (
         <div className={cls.App}>
             <ChipsList chipsItems={fakeChips}/>
+            <ChipsList chipsItems={fakeChips}/>
         </div>
     );
 }

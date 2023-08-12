@@ -1,17 +1,18 @@
 import {memo, useRef, useState} from 'react';
 import {classNames} from '../../helpers/classNames';
 import cls from './Chips.module.css';
+import {ChipsType} from "../../types/ChipsType.ts";
 
 interface ChipsProps {
     className?: string;
-    chips: string;
+    chips: ChipsType;
 }
 
 export const Chips = memo((props: ChipsProps) => {
     const {
         className, chips
     } = props;
-    const ref = useRef<HTMLDivElement>();
+    const ref = useRef<HTMLDivElement>(null);
 
     const [isSelected, setIsSelected] = useState(false);
 
@@ -27,7 +28,7 @@ export const Chips = memo((props: ChipsProps) => {
             onClick={onSelectChips}
             className={classNames(cls.Chips, className, selected)}
         >
-            {chips}
+            {chips.name}
         </div>
     );
 });

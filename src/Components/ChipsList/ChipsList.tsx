@@ -3,20 +3,21 @@ import treeDots from '../../assets/three-horizontal-buttons-svgrepo-com.svg';
 import {classNames} from '../../helpers/classNames';
 import {Chips} from '../Chips/Chips';
 import cls from './ChipsList.module.css';
+import {ChipsType} from "../../types/ChipsType.ts";
 
 interface ChipsListProps {
     className?: string;
-    chipsItems: string[];
+    chipsItems: ChipsType[];
 }
 
 export const ChipsList = ({chipsItems, className}: ChipsListProps) => {
-    const [visibleChildren, setVisibleChildren] = useState([]);
-    const [hiddenChildren, setHiddenChildren] = useState([]);
+    const [visibleChildren, setVisibleChildren] = useState<ChipsType[]>([]);
+    const [hiddenChildren, setHiddenChildren] = useState<ChipsType[]>([]);
     const [isVisible, setIsVisible] = useState(false);
-    const parentRef = useRef<HTMLDivElement>();
+    const parentRef = useRef<HTMLDivElement>(null);
     const elementWidth = parentRef.current?.offsetWidth;
 
-    const sliceVisible = Math.floor((elementWidth - 104) / 104); // рассчитано исходя из длины одного чипса
+    const sliceVisible = Math.floor(((elementWidth || 0) - 104) / 104); // рассчитано исходя из длины одного чипса
 
     const onChangeVisible = () => {
         setIsVisible(prevState => !prevState);
@@ -42,7 +43,7 @@ export const ChipsList = ({chipsItems, className}: ChipsListProps) => {
         <div className={cls.container}>
             <div ref={parentRef} className={classNames(cls.ChipsList, className)}>
                 {visibleChildren.map((chip) => (
-                    <Chips key={chip} chips={chip}/>
+                    <Chips key={chip.name} chips={chip}/>
                 ))}
                 <button
                     onClick={onChangeVisible}
@@ -56,7 +57,7 @@ export const ChipsList = ({chipsItems, className}: ChipsListProps) => {
                 isVisible && <div className={cls.dropDown}>
 					<div className={cls.dropDownInner}>
                         {hiddenChildren.map((chip) => (
-                            <Chips key={chip} chips={chip}/>
+                            <Chips key={chip.name} chips={chip}/>
                         ))}
 					</div>
 				

@@ -8,6 +8,11 @@
 git clone https://github.com/viacheslavorlov/sirius-test.git
 ```
 
+Установка зависимостей:
+```
+npm i
+```
+
 Запуск приложения 
 ```
 npm run dev
