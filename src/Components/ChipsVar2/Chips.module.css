@@ -1,10 +1,13 @@
 .Chips {
     height: 40px;
+    text-align: center;
     padding: 12px;
     display: flex;
+    flex-direction: row;
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
+    flex-shrink: 0;
     background-color: var(--gray-color);
     border-radius: var(--border-radius);
     cursor: pointer;

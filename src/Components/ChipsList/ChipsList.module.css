@@ -19,8 +19,7 @@
 .PopupButton {
     position: relative;
     min-width: 80px;
-
-    height: 56px;
+    height: 40px;
     padding: 8px;
     display: flex;
     flex-wrap: nowrap;
