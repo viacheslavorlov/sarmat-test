@@ -5,7 +5,7 @@
 
 Для запуска приложения нужно клонировать репозиторий одним из способов, например:
 ```
-git clone https://github.com/viacheslavorlov/sarmat-test.git
+git clone https://github.com/viacheslavorlov/sirius-test.git
 ```
 
 Запуск приложения 
