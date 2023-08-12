@@ -47,14 +47,14 @@ export const ChipsList = ({chipsItems, className}: ChipsListProps) => {
                 ))}
                 <button
                     onClick={onChangeVisible}
-                    className={cls.PopupButton}
+                    className={classNames(cls.PopupButton, hiddenChildren.length <= 0 ? cls.disabled : '')}
                     disabled={hiddenChildren.length === 0}
                 >
                     <img src={treeDots} alt="button" className={cls.treeDots}/>
                 </button>
             </div>
             {
-                isVisible && <div className={cls.dropDown}>
+                isVisible && hiddenChildren.length && <div className={cls.dropDown}>
 					<div className={cls.dropDownInner}>
                         {hiddenChildren.map((chip) => (
                             <Chips key={chip.name} chips={chip}/>
