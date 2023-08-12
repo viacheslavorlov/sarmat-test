@@ -31,6 +31,9 @@
     outline: none;
     border: none;
 }
+.disabled {
+    cursor: default;
+}
 
 .treeDots {
     height: 20px;

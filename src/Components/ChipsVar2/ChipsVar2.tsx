@@ -1,20 +1,19 @@
-import {memo, useContext, useLayoutEffect, useRef, useState} from 'react';
-import {classNames} from '../../helpers/classNames';
-import cls from './Chips.module.css';
+import {memo, useLayoutEffect, useRef, useState} from "react";
 import {ChipsType} from "../../types/ChipsType.ts";
-import {ContextChips} from "../../context/contextChips.ts";
+import {classNames} from "../../helpers/classNames.ts";
+import cls from './Chips.module.css'
 
 interface ChipsProps {
     className?: string;
     chips: ChipsType;
+    addChildrenWidth?: (num: number) => void;
 }
 
 export const ChipsVar2 = memo((props: ChipsProps) => {
     const {
-        className, chips
+        className, chips, addChildrenWidth
     } = props;
     const ref = useRef<HTMLDivElement>(null);
-    const {addChildrenWidth} = useContext(ContextChips)
 
     const [isSelected, setIsSelected] = useState(false);
 
@@ -24,7 +23,7 @@ export const ChipsVar2 = memo((props: ChipsProps) => {
         setIsSelected(prevState => !prevState);
     };
     useLayoutEffect(() => {
-        if (ref.current) {
+        if (ref.current && addChildrenWidth) {
             addChildrenWidth(ref.current.offsetWidth)
         }
     }, [])
