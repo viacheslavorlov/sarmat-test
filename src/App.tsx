@@ -2,7 +2,6 @@ import cls from './App.module.css';
 import {ChipsList} from './Components/ChipsList/ChipsList';
 import {fakeChips} from './fakeChips/fakeChips';
 import {ChipsListVar2} from "./Components/ChipsListVar2/ChipsListVar2.tsx";
-import {chipsContentValue, ContextChips} from "./context/contextChips.ts";
 
 function App() {
 
@@ -17,14 +16,8 @@ function App() {
             <br/>
             <br/>
             <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <h1>Второй  вариант</h1>
-            <ContextChips.Provider value={chipsContentValue}>
-                <ChipsListVar2 chipses={fakeChips}/>
-            </ContextChips.Provider>
+            <h1>Второй вариант</h1>
+            <ChipsListVar2 chipses={fakeChips}/>
         </div>
     );
 }
